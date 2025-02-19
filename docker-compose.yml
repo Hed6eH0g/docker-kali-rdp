@@ -1,0 +1,18 @@
+services:
+  kali:
+    build:
+      context: .
+      dockerfile: Dockerfile.kali
+      args:
+        TIMEZONE: ${TIMEZONE}
+    container_name: kali
+    tty: true
+    stdin_open: true
+    ports:
+      - 3390:3390
+    entrypoint: >
+      sh -c "
+        sh init.sh ${KBLAYOUT} ${ROOTPW} && sleep infinity
+      "
+    restart: always
+
