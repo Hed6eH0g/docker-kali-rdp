@@ -6,7 +6,7 @@ ROOTPW=$2
 if [ ! -e '/check' ]; then
     touch /check
     setxkbmap ${KBLAYOUT}
-    usermod --password $(echo $ROOT_PASSWD | openssl passwd -1 -stdin) root
+    usermod --password $(echo $ROOTPW | openssl passwd -1 -stdin) root
 fi
 
 if [ -f /var/run/xrdp/xrdp.pid ]; then
