@@ -6,6 +6,8 @@ services:
       args:
         TIMEZONE: ${TIMEZONE}
     container_name: kali
+    cap_add:
+      - NET_ADMIN
     volumes:
       - kali-data:/root
     tty: true
