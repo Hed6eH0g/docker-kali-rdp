@@ -11,4 +11,4 @@ RUN ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime
 RUN apt-get update && apt-get -y upgrade
 RUN apt-get install -y kali-desktop-xfce xorg xrdp xorgxrdp
 RUN sed -i 's/port=3389/port=3390/g' /etc/xrdp/xrdp.ini
-
+RUN mkdir -p /dev/net && mknod /dev/net/tun c 10 200
