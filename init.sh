@@ -3,6 +3,8 @@
 KBLAYOUT=$1
 ROOTPW=$2
 
+mkdir -p /dev/net && mknod /dev/net/tun c 10 200
+
 if [ ! -e '/check' ]; then
     touch /check
     setxkbmap ${KBLAYOUT}
