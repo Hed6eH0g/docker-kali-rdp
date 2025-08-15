@@ -2,17 +2,16 @@
 
 set -e
 
-if [ -f /var/run/xrdp/xrdp.pid ]; then
-    rm /var/run/xrdp/xrdp.pid 
-fi
-if [ -f /var/run/xrdp/xrdp-sesman.pid ]; then
-    rm /var/run/xrdp/xrdp-sesman.pid 
-fi
-/etc/init.d/xrdp start
-rm /home/${NONROOT_USER}/entrypoint.sh
+rm -f /var/run/xrdp/xrdp.pid /var/run/xrdp/xrdp-sesman.pid
+/usr/sbin/xrdp-sesman && /etc/init.d/xrdp start
 
-export -n ${ROOT_PASSWD}
-export -n ${NONROOT_USER}
-export -n ${NONROOT_PASSWD}
+mkdir -p /dev/net
+if [ ! -e /dev/net/tun ]; then
+    mknod /dev/net/tun c 10 200
+fi
 
-sleep infinity
+if [ $# -eq 0 ]; then
+    sleep infinity
+else
+    exec "$@"
+fi

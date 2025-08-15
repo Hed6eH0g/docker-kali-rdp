@@ -20,10 +20,6 @@ services:
     stdin_open: true
     ports:
       - 3390:3390
-    # entrypoint: >
-    #   sh -c "
-    #     sh init.sh ${KBLAYOUT} ${ROOTPW} && sleep infinity
-    #   "
     restart: always
 
   app-db:

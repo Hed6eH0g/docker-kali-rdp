@@ -1,2 +1,4 @@
 *.env
+*.swp
 bloodhound.config.json
+_docker-compose.yml
